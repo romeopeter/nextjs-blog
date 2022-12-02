@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/_utils.module.css";
+import Date from "../components/date";
 import { getSortedBlogPostData } from "../lib/posts";
 
 export async function getStaticProps() {
@@ -44,7 +45,9 @@ export default function Home({ allPostsData }) {
               <li className={utilStyles.listItem} key={id}>
                 <Link href={`posts/${id}`}>{title}</Link>
                 <br />
-                <span style={{ color: "rgba(0,0,0,0.3)" }}>{date}</span>
+                <small className={utilStyles.lightText}>
+                  <Date dateString={date} />
+                </small>
               </li>
             );
           })}
