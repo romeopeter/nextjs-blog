@@ -1,7 +1,8 @@
 import Head from "next/head";
+import Link from "next/link";
+
 import Layout, { siteTitle } from "../components/layout";
 import utilStyles from "../styles/_utils.module.css";
-
 import { getSortedBlogPostData } from "../lib/posts";
 
 export async function getStaticProps() {
@@ -23,8 +24,7 @@ export default function Home({ allPostsData }) {
 
       <section className={utilStyles.headingMd}>
         <p>
-          Hi, I'm Romeo 👋🏿 <br /> I'm a Software developer, Technical writer and
-          Creator.
+          Hi, I'm Romeo! <br /> I'm a creator; I build and I write 👨🏿‍💻
         </p>
 
         <p>
@@ -37,19 +37,14 @@ export default function Home({ allPostsData }) {
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, matterResult }) => {
-            
             const title = matterResult.data.title;
             const date = matterResult.data.date;
 
-            console.log(matterResult);
-
             return (
               <li className={utilStyles.listItem} key={id}>
-                {title}
+                <Link href={`posts/${id}`}>{title}</Link>
                 <br />
-                {id}
-                <br />
-                {date}
+                <span style={{ color: "rgba(0,0,0,0.3)" }}>{date}</span>
               </li>
             );
           })}
